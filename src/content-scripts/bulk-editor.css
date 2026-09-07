@@ -1,0 +1,182 @@
+/* Etsy Bulk Editor injected styles */
+
+#ebe-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: #fff;
+  border-bottom: 2px solid #F56400;
+  box-shadow: 0 2px 12px rgba(245, 100, 0, 0.12);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+}
+
+.ebe-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  flex-wrap: wrap;
+}
+
+.ebe-left, .ebe-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ebe-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: #F56400;
+  min-width: 80px;
+}
+
+.ebe-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 13px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #222;
+  transition: background 0.12s, border-color 0.12s, opacity 0.12s;
+  font-family: inherit;
+  line-height: 1;
+}
+
+.ebe-btn:hover:not(:disabled) {
+  background: #fef3ec;
+  border-color: #F56400;
+  color: #c44800;
+}
+
+.ebe-btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.ebe-btn-ghost {
+  background: transparent;
+  color: #565959;
+}
+
+.ebe-btn-primary {
+  background: #F56400;
+  color: #fff;
+  border-color: #c44800;
+}
+
+.ebe-btn-primary:hover:not(:disabled) {
+  background: #d45800;
+  color: #fff;
+}
+
+.ebe-panel {
+  padding: 10px 16px 12px;
+  border-top: 1px solid #e5e7eb;
+  background: #fef9f5;
+}
+
+.ebe-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #565959;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.ebe-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ebe-input {
+  padding: 7px 10px;
+  border: 1px solid #d5d9d9;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  width: 130px;
+  outline: none;
+  color: #222;
+}
+
+.ebe-input:focus {
+  border-color: #F56400;
+  box-shadow: 0 0 0 2px rgba(245, 100, 0, 0.15);
+}
+
+.ebe-note {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #a16207;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  border-radius: 6px;
+  padding: 6px 9px;
+}
+
+/* Checkbox injected into each listing row */
+.ebe-checkbox-wrap {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 5px;
+  border: 1.5px solid #d5d9d9;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: border-color 0.12s;
+}
+
+.ebe-checkbox-wrap:hover {
+  border-color: #F56400;
+}
+
+.ebe-checkbox {
+  width: 14px;
+  height: 14px;
+  accent-color: #F56400;
+  cursor: pointer;
+}
+
+/* Toast notification */
+#ebe-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+  background: #222;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: "Segoe UI", Arial, sans-serif;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  animation: ebe-fadein 0.2s ease;
+  max-width: 480px;
+  text-align: center;
+}
+
+@keyframes ebe-fadein {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}

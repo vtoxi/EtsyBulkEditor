@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Etsy Bulk Editor — Screenshot 2</title>
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { width:1280px; height:800px; overflow:hidden; background:#f9fafb; font-family:"Segoe UI",Arial,sans-serif; display:flex; flex-direction:column; }
+  .browser-bar { background:#e8eaed; padding:8px 12px; display:flex; align-items:center; gap:10px; border-bottom:1px solid #ccc; }
+  .browser-dots { display:flex; gap:6px; }
+  .browser-dots span { width:12px; height:12px; border-radius:50%; }
+  .d1{background:#ff5f56} .d2{background:#ffbd2e} .d3{background:#27c93f}
+  .browser-url { flex:1; background:#fff; border:1px solid #ccc; border-radius:20px; padding:4px 12px; font-size:12px; color:#555; }
+  .etsy-header { background:#fff; padding:10px 20px; border-bottom:1px solid #e5e7eb; display:flex; align-items:center; gap:16px; }
+  .etsy-logo { font-size:22px; font-weight:900; color:#F56400; }
+  .etsy-nav { display:flex; gap:16px; font-size:13px; color:#555; }
+  .etsy-nav .active { color:#F56400; font-weight:700; border-bottom:2px solid #F56400; padding-bottom:2px; }
+  #ebe-toolbar { background:#fff; border-bottom:2px solid #F56400; box-shadow:0 2px 12px rgba(245,100,0,.12); }
+  .ebe-inner { display:flex; align-items:center; justify-content:space-between; padding:10px 20px; }
+  .ebe-left,.ebe-right { display:flex; align-items:center; gap:8px; }
+  .ebe-count { font-size:12px; font-weight:700; color:#F56400; }
+  .ebe-btn { padding:7px 13px; border-radius:7px; font-size:12px; font-weight:700; border:1px solid #e5e7eb; background:#fff; color:#222; font-family:inherit; }
+  .ebe-btn.active { background:#F56400; color:#fff; border-color:#c44800; }
+  /* Price adjust panel */
+  .price-panel {
+    background:#fff; border:1.5px solid #F56400; border-radius:10px;
+    padding:16px 20px; margin:0 20px; box-shadow:0 4px 16px rgba(245,100,0,.13);
+    display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+  }
+  .price-panel label { font-size:13px; font-weight:700; color:#222; }
+  .price-input-wrap { display:flex; align-items:center; gap:8px; }
+  .price-input { padding:8px 12px; border:1.5px solid #e5e7eb; border-radius:7px; font-size:14px; width:80px; font-family:inherit; color:#222; }
+  .price-input:focus { border-color:#F56400; outline:none; }
+  .pct-label { font-size:13px; font-weight:700; color:#555; }
+  .apply-btn { padding:8px 18px; background:#F56400; color:#fff; border:none; border-radius:7px; font-size:13px; font-weight:700; font-family:inherit; }
+  /* Listings */
+  .listings-page { flex:1; padding:16px 20px; overflow:hidden; }
+  .page-title { font-size:18px; font-weight:700; margin-bottom:12px; color:#222; }
+  .listing-grid { display:flex; flex-direction:column; gap:0; border:1px solid #e5e7eb; border-radius:10px; overflow:hidden; background:#fff; }
+  .listing-row { display:flex; align-items:center; gap:14px; padding:12px 16px; border-bottom:1px solid #e5e7eb; }
+  .listing-row:last-child { border-bottom:none; }
+  .listing-row.selected { background:#fef3ec; }
+  .cb-wrap { width:22px; height:22px; border-radius:5px; border:1.5px solid #F56400; display:grid; place-items:center; background:#fff; }
+  .listing-img { width:48px; height:48px; background:#f0f0f0; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:20px; }
+  .listing-info { flex:1; }
+  .listing-title { font-size:13px; font-weight:600; color:#222; }
+  .listing-meta { font-size:11px; color:#888; margin-top:2px; }
+  .price-old { font-size:13px; color:#aaa; text-decoration:line-through; margin-right:6px; }
+  .price-new { font-size:14px; font-weight:700; color:#F56400; }
+  /* Side label */
+  .side-label { position:fixed; right:24px; top:50%; transform:translateY(-50%); background:#232F3E; color:#fff; border-radius:12px; padding:20px; max-width:240px; box-shadow:0 8px 32px rgba(0,0,0,.3); }
+  .side-label h2 { font-size:18px; font-weight:800; margin-bottom:8px; color:#F56400; }
+  .side-label p { font-size:13px; color:#c9d0d5; line-height:1.6; }
+</style>
+</head>
+<body>
+  <div class="browser-bar">
+    <div class="browser-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div>
+    <div class="browser-url">https://www.etsy.com/your/shops/MyShop/tools/listings</div>
+  </div>
+  <div class="etsy-header">
+    <div class="etsy-logo">etsy</div>
+    <div class="etsy-nav"><span>Dashboard</span><span class="active">Listings</span><span>Orders</span></div>
+  </div>
+  <div id="ebe-toolbar">
+    <div class="ebe-inner">
+      <div class="ebe-left">
+        <button class="ebe-btn">Select all</button>
+        <button class="ebe-btn">Deselect all</button>
+        <span class="ebe-count">4 selected</span>
+      </div>
+      <div class="ebe-right">
+        <button class="ebe-btn">Copy tags</button>
+        <button class="ebe-btn active">Adjust price</button>
+        <button class="ebe-btn">Export CSV</button>
+      </div>
+    </div>
+    <!-- Price adjust panel -->
+    <div class="price-panel">
+      <label>Change price by %</label>
+      <div class="price-input-wrap">
+        <input class="price-input" value="+10" type="text">
+        <span class="pct-label">%</span>
+      </div>
+      <button class="apply-btn">Preview</button>
+      <span style="font-size:12px;color:#555;">Previewing +10% on 4 listings</span>
+    </div>
+  </div>
+
+  <div class="listings-page">
+    <div class="page-title">Active listings (12)</div>
+    <div class="listing-grid">
+      <div class="listing-row selected">
+        <div class="cb-wrap"><input type="checkbox" checked></div>
+        <div class="listing-img">🧶</div>
+        <div class="listing-info"><div class="listing-title">Hand-knitted Cozy Blanket — Sage Green</div><div class="listing-meta">Updated price preview</div></div>
+        <div><span class="price-old">$48.00</span><span class="price-new">$52.80</span></div>
+      </div>
+      <div class="listing-row selected">
+        <div class="cb-wrap"><input type="checkbox" checked></div>
+        <div class="listing-img">🕯️</div>
+        <div class="listing-info"><div class="listing-title">Soy Wax Candle — Lavender &amp; Vanilla</div><div class="listing-meta">Updated price preview</div></div>
+        <div><span class="price-old">$22.00</span><span class="price-new">$24.20</span></div>
+      </div>
+      <div class="listing-row selected">
+        <div class="cb-wrap"><input type="checkbox" checked></div>
+        <div class="listing-img">🎨</div>
+        <div class="listing-info"><div class="listing-title">Custom Pet Portrait — Watercolor Style</div><div class="listing-meta">Updated price preview</div></div>
+        <div><span class="price-old">$35.00</span><span class="price-new">$38.50</span></div>
+      </div>
+      <div class="listing-row selected">
+        <div class="cb-wrap"><input type="checkbox" checked></div>
+        <div class="listing-img">🧴</div>
+        <div class="listing-info"><div class="listing-title">Organic Face Serum — Rose Hip</div><div class="listing-meta">Updated price preview</div></div>
+        <div><span class="price-old">$28.00</span><span class="price-new">$30.80</span></div>
+      </div>
+      <div class="listing-row">
+        <div class="cb-wrap"></div>
+        <div class="listing-img">📿</div>
+        <div class="listing-info"><div class="listing-title">Beaded Bracelet Set — Bohemian</div><div class="listing-meta">Not selected</div></div>
+        <div style="font-size:14px;font-weight:700;color:#222;">$18.00</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-label">
+    <h2>Raise prices in seconds</h2>
+    <p>Enter a percentage, preview the new prices on every selected listing, then open them to confirm.</p>
+  </div>
+</body>
+</html>

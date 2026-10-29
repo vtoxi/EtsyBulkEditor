@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Etsy Bulk Editor — Screenshot 1</title>
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { width:1280px; height:800px; overflow:hidden; background:#f9fafb; font-family:"Segoe UI",Arial,sans-serif; display:flex; flex-direction:column; }
+  /* Simulated browser bar */
+  .browser-bar { background:#e8eaed; padding:8px 12px; display:flex; align-items:center; gap:10px; border-bottom:1px solid #ccc; }
+  .browser-dots { display:flex; gap:6px; }
+  .browser-dots span { width:12px; height:12px; border-radius:50%; }
+  .d1{background:#ff5f56} .d2{background:#ffbd2e} .d3{background:#27c93f}
+  .browser-url { flex:1; background:#fff; border:1px solid #ccc; border-radius:20px; padding:4px 12px; font-size:12px; color:#555; }
+  /* Etsy chrome sim */
+  .etsy-header { background:#fff; padding:10px 20px; border-bottom:1px solid #e5e7eb; display:flex; align-items:center; gap:16px; }
+  .etsy-logo { font-size:22px; font-weight:900; color:#F56400; }
+  .etsy-nav { display:flex; gap:16px; font-size:13px; color:#555; }
+  .etsy-nav .active { color:#F56400; font-weight:700; border-bottom:2px solid #F56400; padding-bottom:2px; }
+  /* Extension toolbar */
+  #ebe-toolbar { background:#fff; border-bottom:2px solid #F56400; box-shadow:0 2px 12px rgba(245,100,0,.12); }
+  .ebe-inner { display:flex; align-items:center; justify-content:space-between; padding:10px 20px; }
+  .ebe-left,.ebe-right { display:flex; align-items:center; gap:8px; }
+  .ebe-count { font-size:12px; font-weight:700; color:#F56400; }
+  .ebe-btn { padding:7px 13px; border-radius:7px; font-size:12px; font-weight:700; border:1px solid #e5e7eb; background:#fff; color:#222; font-family:inherit; cursor:pointer; }
+  .ebe-btn.active { background:#F56400; color:#fff; border-color:#c44800; }
+  .ebe-btn.disabled { opacity:.38; }
+  /* Listing grid */
+  .listings-page { flex:1; padding:20px; overflow:hidden; }
+  .page-title { font-size:18px; font-weight:700; margin-bottom:14px; color:#222; }
+  .listing-grid { display:flex; flex-direction:column; gap:0; border:1px solid #e5e7eb; border-radius:10px; overflow:hidden; background:#fff; }
+  .listing-row { display:flex; align-items:center; gap:14px; padding:12px 16px; border-bottom:1px solid #e5e7eb; position:relative; }
+  .listing-row:last-child { border-bottom:none; }
+  .listing-row.selected { background:#fef3ec; }
+  .cb-wrap { width:22px; height:22px; border-radius:5px; border:1.5px solid #F56400; display:grid; place-items:center; background:#fff; }
+  .cb { width:14px; height:14px; accent-color:#F56400; }
+  .listing-img { width:48px; height:48px; background:#f0f0f0; border-radius:6px; object-fit:cover; display:flex; align-items:center; justify-content:center; font-size:20px; }
+  .listing-info { flex:1; }
+  .listing-title { font-size:13px; font-weight:600; color:#222; }
+  .listing-meta { font-size:11px; color:#888; margin-top:2px; }
+  .listing-price { font-size:14px; font-weight:700; color:#222; }
+  /* overlay badge */
+  .ext-badge { position:absolute; top:-30px; right:0; background:#F56400; color:#fff; padding:4px 10px; border-radius:6px 6px 0 0; font-size:11px; font-weight:700; }
+  /* Side label */
+  .side-label { position:fixed; left:24px; top:50%; transform:translateY(-50%); background:#232F3E; color:#fff; border-radius:12px; padding:20px; max-width:260px; box-shadow:0 8px 32px rgba(0,0,0,.3); }
+  .side-label h2 { font-size:20px; font-weight:800; margin-bottom:8px; }
+  .side-label p { font-size:13px; color:#c9d0d5; line-height:1.6; }
+</style>
+</head>
+<body>
+  <div class="browser-bar">
+    <div class="browser-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div>
+    <div class="browser-url">https://www.etsy.com/your/shops/MyShop/tools/listings</div>
+  </div>
+  <div class="etsy-header">
+    <div class="etsy-logo">etsy</div>
+    <div class="etsy-nav">
+      <span>Dashboard</span>
+      <span class="active">Listings</span>
+      <span>Orders</span>
+      <span>Stats</span>
+    </div>
+  </div>
+
+  <!-- Extension toolbar -->
+  <div id="ebe-toolbar">
+    <div class="ebe-inner">
+      <div class="ebe-left">
+        <button class="ebe-btn">Select all</button>
+        <button class="ebe-btn">Deselect all</button>
+        <span class="ebe-count">3 selected</span>
+      </div>
+      <div class="ebe-right">
+        <button class="ebe-btn active">Copy tags</button>
+        <button class="ebe-btn active">Adjust price</button>
+        <button class="ebe-btn active">Export CSV</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="listings-page">
+    <div class="page-title">Active listings (12)</div>
+    <div class="listing-grid">
+      <div class="listing-row selected">
+        <div class="cb-wrap"><input type="checkbox" class="cb" checked></div>
+        <div class="listing-img">🧶</div>
+        <div class="listing-info">
+          <div class="listing-title">Hand-knitted Cozy Blanket — Sage Green</div>
+          <div class="listing-meta">Tags: blanket, cozy, handmade, gift, sage green, knit...</div>
+        </div>
+        <div class="listing-price">$48.00</div>
+      </div>
+      <div class="listing-row selected">
+        <div class="cb-wrap"><input type="checkbox" class="cb" checked></div>
+        <div class="listing-img">🕯️</div>
+        <div class="listing-info">
+          <div class="listing-title">Soy Wax Candle — Lavender &amp; Vanilla</div>
+          <div class="listing-meta">Tags: candle, soy, lavender, aromatherapy, gift...</div>
+        </div>
+        <div class="listing-price">$22.00</div>
+      </div>
+      <div class="listing-row selected">
+        <div class="cb-wrap"><input type="checkbox" class="cb" checked></div>
+        <div class="listing-img">🎨</div>
+        <div class="listing-info">
+          <div class="listing-title">Custom Pet Portrait — Watercolor Style</div>
+          <div class="listing-meta">Tags: pet portrait, custom, watercolor, dog, cat...</div>
+        </div>
+        <div class="listing-price">$35.00</div>
+      </div>
+      <div class="listing-row">
+        <div class="cb-wrap"><input type="checkbox" class="cb"></div>
+        <div class="listing-img">🧴</div>
+        <div class="listing-info">
+          <div class="listing-title">Organic Face Serum — Rose Hip</div>
+          <div class="listing-meta">Tags: skincare, organic, serum, face, rose...</div>
+        </div>
+        <div class="listing-price">$28.00</div>
+      </div>
+      <div class="listing-row">
+        <div class="cb-wrap"><input type="checkbox" class="cb"></div>
+        <div class="listing-img">📿</div>
+        <div class="listing-info">
+          <div class="listing-title">Beaded Bracelet Set — Bohemian</div>
+          <div class="listing-meta">Tags: bracelet, boho, jewelry, handmade, set...</div>
+        </div>
+        <div class="listing-price">$18.00</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-label">
+    <h2>Bulk editing,<br>finally on Etsy</h2>
+    <p>Select multiple listings with one click. Copy tags, adjust prices, or export CSV — right from your shop manager.</p>
+  </div>
+</body>
+</html>
